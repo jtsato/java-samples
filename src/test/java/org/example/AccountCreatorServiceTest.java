@@ -33,6 +33,7 @@ class AccountCreatorServiceTest {
             "INDIVIDUAL,,102030405a",
             "INDIVIDUAL,Santander,203040507",
             "LEGAL_ENTITY,Santander,102030405",
+            "LEGAL_ENTITY,Santander,20E040506",
     })
     void shouldThrowExceptionWhenInvalidAccountNumber(AccountType accountType, String bankName, String accountNumber) {
         AccountCreatorService accountCreator = new AccountCreatorService();

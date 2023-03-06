@@ -1,12 +1,12 @@
 package org.example.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Generated;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
+@Generated
 public class Account {
 
     private AccountType accountType;
