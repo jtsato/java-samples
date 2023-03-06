@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.helper;
 
 import org.apache.commons.lang3.StringUtils;
 import org.example.model.AccountType;
