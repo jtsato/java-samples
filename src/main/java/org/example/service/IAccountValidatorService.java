@@ -3,7 +3,7 @@ package org.example.service;
 import org.apache.commons.lang3.StringUtils;
 import org.example.model.AccountType;
 
-// OCP: Open-Closed Principle
+// 02 OCP: Open-Closed Principle
 public interface IAccountValidatorService {
 
     String INVALID_ACCOUNT_MESSAGE = "Invalid account information";

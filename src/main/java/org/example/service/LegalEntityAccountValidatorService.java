@@ -2,7 +2,7 @@ package org.example.service;
 
 import org.example.model.AccountType;
 
-// SRP: Single Responsibility Principle
+// 01 SRP: Single Responsibility Principle
 public class LegalEntityAccountValidatorService implements IAccountValidatorService {
 
     private static final String LEGAL_ENTITY_ACCOUNT_NUMBER_PREFIX = "20";

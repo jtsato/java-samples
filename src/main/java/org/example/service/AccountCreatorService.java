@@ -7,7 +7,7 @@ public class AccountCreatorService
 {
     private final IAccountValidatorService validatorService;
 
-    // DIP: Dependency Inversion Principle
+    // 05 DIP: Dependency Inversion Principle
     public AccountCreatorService(IAccountValidatorService validatorService)
     {
         this.validatorService = validatorService;
