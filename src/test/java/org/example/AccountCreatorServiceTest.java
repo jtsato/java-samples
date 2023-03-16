@@ -5,6 +5,7 @@ import org.example.model.Account;
 import org.example.model.AccountType;
 import org.example.service.AccountCreatorService;
 import org.example.service.IAccountValidatorService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -21,10 +22,16 @@ class AccountCreatorServiceTest {
             "INDIVIDUAL,Santander,102030405",
     })
     void shouldCreateAccount(AccountType accountType, String bankName, String accountNumber) {
+        // Arrange
         IAccountValidatorService validatorService = AccountValidatorFactory.create(accountType);
-        AccountCreatorService accountCreator = new AccountCreatorService(validatorService);
-        Account account = accountCreator.create(accountType, bankName, accountNumber);
+        AccountCreatorService creatorService = new AccountCreatorService(validatorService);
+
+        // Act
+        Account account = creatorService.create(accountType, bankName, accountNumber);
+
+        // Assert
         assertThat(account).isNotNull();
+        assertThat(account.getAccountType()).isEqualTo(accountType);
         assertThat(account.getBankName()).isEqualTo(bankName);
         assertThat(account.getAccountNumber()).isEqualTo(Integer.parseInt(accountNumber));
         assertThat(account.toString()).hasToString("Account Type: " + accountType + "Bank Name: " + bankName + " Account Number: " + accountNumber);
@@ -40,12 +47,17 @@ class AccountCreatorServiceTest {
             "LEGAL_ENTITY,Santander,20E040506",
     })
     void shouldThrowExceptionWhenInvalidAccountNumber(AccountType accountType, String bankName, String accountNumber) {
+        // Arrange
         IAccountValidatorService validatorService = AccountValidatorFactory.create(accountType);
-        AccountCreatorService accountCreator = new AccountCreatorService(validatorService);
-        try {
-            accountCreator.create(accountType, bankName, accountNumber);
-        } catch (IllegalArgumentException exception) {
-            assertThat(exception.getMessage()).isEqualTo("Invalid account information");
-        }
+        AccountCreatorService creatorService = new AccountCreatorService(validatorService);
+
+        // Act
+        Exception exception =
+                Assertions.assertThrows(IllegalArgumentException.class,
+                        () -> creatorService.create(accountType, bankName, accountNumber));
+
+        // Assert
+        assertThat(exception).isInstanceOf(IllegalArgumentException.class);
+        assertThat(exception.getMessage()).isEqualTo("Invalid account information");
     }
 }

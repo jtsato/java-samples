@@ -6,7 +6,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@Generated
 public class Account {
 
     private AccountType accountType;
